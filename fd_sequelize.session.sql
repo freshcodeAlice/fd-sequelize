@@ -5,3 +5,12 @@ CREATE TABLE users(
     email varchar(200) UNIQUE NOT NULL,
     
 )
+
+
+SELECT *
+FROM users;
+
+
+DELETE FROM users
+WHERE id = 2
+RETURNING *;
