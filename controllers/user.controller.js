@@ -11,7 +11,11 @@ module.exports.createUser = async (req, res, next) => {
 }
 module.exports.getAllUsers = async (req, res, next) => {
    try {
-    const allUsers = await User.findAll();
+    const allUsers = await User.findAll({
+        attributes: {
+            exclude: ['password']
+        }
+    });
     res.status(200).send(allUsers);
    } catch(error) {
     next(error);
@@ -23,8 +27,13 @@ module.exports.getAllUsers = async (req, res, next) => {
 
 module.exports.getOneUser = async (req, res, next) => {
     try {
-        const {userInstance} = req;
-        res.status(200).send(userInstance);
+        const {params: {userId}} = req;
+        const user = await User.findByPk(userId, {
+            attributes: {
+                exclude: ['password']
+            }
+        })
+        res.status(200).send(user);
     } catch(error) {
         next(error);
     }
