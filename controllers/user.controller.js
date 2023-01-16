@@ -1,4 +1,5 @@
 const {User} = require('../models');
+const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.createUser = async (req, res, next) => {
     try {
@@ -33,6 +34,9 @@ module.exports.getOneUser = async (req, res, next) => {
                 exclude: ['password']
             }
         })
+        if (!user){
+            throw new NotFoundError('User not found');
+        }
         res.status(200).send(user);
     } catch(error) {
         next(error);
