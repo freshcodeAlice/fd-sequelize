@@ -105,3 +105,33 @@ module.exports.deleteUserFromGroup = async(req, res, next) => {
         next(error)
     }
 }
+
+/*
+{
+  fieldname: 'groupImage',
+  originalname: 'art.png',
+  encoding: '7bit',
+  mimetype: 'image/png',
+  destination: '/home/freshcodealice/Стільниця/ALICE/onl-js-2 (fd)/fd-sequelize/public/images',
+  filename: '1673964851512.art.png',
+  path: '/home/freshcodealice/Стільниця/ALICE/onl-js-2 (fd)/fd-sequelize/public/images/1673964851512.art.png',
+  size: 146878
+}
+
+*/
+
+module.exports.createGroupImage = async(req, res, next) => {
+ //   console.log(req.file.filename);
+    try {
+    const {params: {groupId}, file: {filename}} = req;
+        const [rowCount, [updatedGroup]] = await Group.update({imagePath: filename}, {
+            where: {
+                id: groupId
+            },
+            returning: true
+        });
+        res.status(200).send(updatedGroup);
+    }catch(error) {
+        next(error);
+    }
+}
