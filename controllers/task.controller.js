@@ -44,7 +44,17 @@ module.exports.getOneTask = async(req, res, next) => {
     }
 }
 module.exports.updateTask = async(req, res, next) => {
-    ///Homework task
+    try {
+        const {params: {taskId}, body} = req;
+        const result = await Task.update(body, {
+            where: {
+                id: taskId
+            }
+        });
+        res.status(204).send();
+    } catch(error) {
+        next(error);
+    }
 }
 
 

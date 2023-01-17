@@ -24,9 +24,6 @@ module.exports.getAllUsers = async (req, res, next) => {
    }
 }
 
-
-
-
 module.exports.getOneUser = async (req, res, next) => {
     try {
         const {params: {userId}} = req;

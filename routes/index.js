@@ -4,7 +4,7 @@ const taskRouter = require('./taskRouter');
 const groupRouter = require('./groupRouter');
 
 const rootRouter = Router();
-rootRouter.use('/users', userRouter);
+rootRouter.use('/users/', userRouter);
 rootRouter.use('/tasks', taskRouter);
 rootRouter.use('/groups', groupRouter);
 

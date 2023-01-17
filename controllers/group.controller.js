@@ -89,7 +89,7 @@ module.exports.deleteGroup = async(req, res, next) => {
                 id: groupId
             }
         });
-        res.status(200).send({});
+        res.status(204).send();
     } catch(error) {
         next(error)
     }
