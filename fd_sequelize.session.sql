@@ -24,3 +24,7 @@ LIMIT 10
 OFFSET 10;
 
 
+
+
+
+SELECT * FROM groups;
